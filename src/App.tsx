@@ -1,57 +1,28 @@
-import logo from "./logo.svg"
-import { Counter } from "./features/counter/Counter"
-import "./App.css"
+import "./index.css"
+import Chart from "./components/Chart"
+import CurrentWeatherCard from "./components/CurrentWeatherCard"
+import Header from "./components/Header"
+import WeatherCards from "./components/WeatherCards"
+import WeatherFlashCards from "./components/WeatherFlashCard"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div className="flex flex-col min-h-screen overflow-hidden">
+      {/* Site header  */}
+      <Header title={"Weather app"} />
+      {/* Page content  */}
+      <main className="flex-grow mt-10">
+
+       
+          {/* Page sections  */}
+<CurrentWeatherCard temperature={0} description={"Today is rainy"}/>
+ <div className="container md:mx-auto px-6 mt-4">
+          <WeatherCards />
+          <Chart />
+        </div>
+      </main>
     </div>
-  )
+  ) 
 }
 
 export default App
