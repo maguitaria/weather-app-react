@@ -9,7 +9,7 @@ const MainPage: React.FC = () => {
     <div className="flex flex-col min-h-screen bg-gray-light/60 overflow-hidden">
       {/* Site header */}
       <div className="header ">
-        <Header title={"Weather app"} />
+        <Header title={"Weather in Oulu, Finland"} />
       </div>
       {/* Page content */}
       <main className="flex-grow mt-10">

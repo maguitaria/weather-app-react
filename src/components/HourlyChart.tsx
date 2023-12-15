@@ -9,10 +9,11 @@ import {
   Legend,
   Tooltip,
   ChartData,
+  TimeScale
 } from "chart.js";
 import axios from "axios";
 import { WeatherData, getTempAndDay } from "../axios/fetch";
-
+import "chartjs-adapter-date-fns";
 interface WeatherChartProps {}
 
 const WeatherChart: React.FC<WeatherChartProps> = () => {
@@ -21,6 +22,7 @@ const WeatherChart: React.FC<WeatherChartProps> = () => {
     CategoryScale,
     LinearScale,
     PointElement,
+    TimeScale,
     Legend,
     Tooltip
   );
@@ -30,11 +32,42 @@ const WeatherChart: React.FC<WeatherChartProps> = () => {
       legend: true,
     },
     scales: {
-      y: {},
+      y: {
+        min: -10,
+        max: 10,
+        ticks: {
+          stepSize: 2, // Adjust as needed
+        },
+        title: {
+          display: true,
+          text: "Temperature (°C)",
+        },
+       
+      },
+      x: {
+        type: "time", // Use time axis
+        time: {
+          unit: "day", // Set the time unit to "hour"
+          displayFormats: {
+            hour: "MMM d", // Format for hourly labels
+          },
+          minUnit: "day", // Display a separator when a day ends
+        },
+        title: {
+          display: true,
+          text: "Week",
+        },
+        grid: {
+          display: false,
+        },
+      },
     },
     elements: {
       line: {
         tension: 0.4, // smooth lines
+      },
+      area: {
+        backgroundColor: "rgba(255, 255, 255, 0.8)", // Set the background color
       },
     },
     animations: {},
@@ -77,7 +110,7 @@ const WeatherChart: React.FC<WeatherChartProps> = () => {
           />
         </div>
       ) : (
-        <p>Loading...</p>
+        <p>Loading data...</p>
       )}
     </div>
   );
