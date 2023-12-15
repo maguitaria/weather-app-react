@@ -32,6 +32,14 @@ const WeatherChart: React.FC<WeatherChartProps> = () => {
     scales: {
       y: {},
     },
+    elements: {
+      line: {
+        tension: 0.4, // smooth lines
+      },
+    },
+    animations: {},
+    responsive: true,
+    maintainAspectRatio: false,
   };
 
   const [chartData, setChartData] = useState<ChartData<
@@ -65,11 +73,7 @@ const WeatherChart: React.FC<WeatherChartProps> = () => {
           <Line
             type="line"
             data={chartData}
-            options={{
-              ...options,
-              responsive: true,
-              maintainAspectRatio: false,
-            }}
+            options={options}
           />
         </div>
       ) : (

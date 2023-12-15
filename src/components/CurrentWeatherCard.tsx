@@ -23,8 +23,8 @@ const CurrentWeatherCard: React.FC<CurrentWeatherCardProps> = ({
     temperatureUnit === "Celsius" ? temperature : (temperature * 9) / 5 + 32;
 
   return (
-    <div className="flex h-96 max-w-md space-y-4 w-full">
-      <div className="bg-white p-4 shadow-md rounded-md text-center w-full">
+    <div className="flex h-96 bg-white rounded-md  max-w-md space-y-4 w-full">
+      <div className=" bg-white p-4 shadow-md rounded-md text-center w-full">
         <h3 className="text-xl font-bold mb-2 text-center">Current Weather</h3>
         <img
           alt="cloudy"

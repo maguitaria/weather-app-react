@@ -8,6 +8,7 @@ export interface WeatherData {
         fill: boolean;
         pointBorderColor: string;
         borderColor: string;
+        lineTension? : number // how smooth the lines are displayed
     }[];
 }
 
@@ -40,6 +41,7 @@ export async function getTempAndDay(): Promise<WeatherData> {
                     fill: false,
                     pointBorderColor: 'aqua',
                     borderColor: "",
+                    lineTension: 1,
                 },
             ],
         };
