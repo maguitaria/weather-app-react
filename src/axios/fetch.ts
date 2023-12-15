@@ -39,7 +39,7 @@ export async function getTempAndDay(): Promise<WeatherData> {
                     data: temperatureData,
                     fill: false,
                     pointBorderColor: 'aqua',
-                    borderColor: "rgba(75,192,192,1)",
+                    borderColor: "",
                 },
             ],
         };

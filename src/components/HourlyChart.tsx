@@ -59,9 +59,19 @@ const WeatherChart: React.FC<WeatherChartProps> = () => {
 
   return (
     <div>
-      <h2>Hourly chart</h2>
+      <h2 className="text-xl font-bold mb-2">Hourly chart</h2>
       {chartData ? (
-        <Line data={chartData} options={options} />
+        <div className="mx-auto flex h-96 flex-grow rounded-md bg-blue/20 p-4">
+          <Line
+            type="line"
+            data={chartData}
+            options={{
+              ...options,
+              responsive: true,
+              maintainAspectRatio: false,
+            }}
+          />
+        </div>
       ) : (
         <p>Loading...</p>
       )}

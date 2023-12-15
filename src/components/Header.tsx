@@ -3,8 +3,10 @@ import React from "react";
 import { useWeatherContext } from "../contexts/TemperatureUnit";
 import Icon from "./WeatherIcon";
 import icons from "../assets";
-
-const Header: React.FC = () => {
+interface HeaderProps {
+  title: string;
+}
+const Header: React.FC<HeaderProps> = ({title}) => {
   const { temperatureUnit, setTemperatureUnit } = useWeatherContext();
 
   const toggleTemperatureUnit = () => {
@@ -13,26 +15,25 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className=" bg-slate-400 py-4">
+    <div className=" bg-slate-200 p-1">
       <div className="container mx-auto">
         <div className="flex flex-row">
           <div className="px-4">
-            <p className="text-white capitalize"> Weather App</p>
+            <p className="text-white capitalize">{title}</p>
           </div>
-         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-         onClick={toggleTemperatureUnit}>
- {temperatureUnit === "Celsius" ? (
-                <Icon iconFile={icons.celsius} width={50} height={50} />
-              ) : (
-                <Icon iconFile={icons.fahrenheit}  width={50} height={50} />
-              )}
-              {temperatureUnit}
-</button>
-           
-          </div>
+          <button
+            className="bg-blue hover:bg-blue-700 text-white font-bold rounded-full flex items-center space-x-2 p-2"
+            onClick={toggleTemperatureUnit}
+          >
+            {temperatureUnit === "Celsius" ? (
+              <Icon iconFile={icons.celsius} width={40} height={40} />
+            ) : (
+              <Icon iconFile={icons.fahrenheit} width={40} height={40} />
+            )}
+          </button>
         </div>
       </div>
-  
+    </div>
   );
 };
 

@@ -23,7 +23,7 @@ const convertedTemperature =
       <h2 className="text-lg font-bold mb-2">{day}</h2>
       <p className="text-gray-600">{description}</p>
       <p className="text-xl font-bold mt-4">
-      {convertedTemperature.toFixed(2)}&deg;{temperatureUnit.charAt(0)}
+      {convertedTemperature.toFixed(1)}&deg;{temperatureUnit.charAt(0)}
       </p>
     </div>
   )
