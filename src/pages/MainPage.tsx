@@ -16,12 +16,7 @@ const MainPage: React.FC = () => {
         <div className="container mx-auto flex flex-col p-4 lg:flex-row lg:p-0">
           {/* CurrentWeatherCard takes full height */}
           <div className="flex-none lg:w-25 p-5">
-            <CurrentWeatherCard
-              temperature={0}
-              description={"Today is rainy"}
-              date={"14.12"}
-              wind={4.5}
-            />
+            <CurrentWeatherCard/>
           </div>
 
           {/* Gap between CurrentWeatherCard and WeatherCards/WeatherChart */}
