@@ -17,12 +17,7 @@ const WeatherFlashCard: React.FC<WeatherFlashCardProps> = ({
   description,
 }) => {
   const { temperatureUnit } = useWeatherContext();
-const options = {
-  weekday: "long",
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-};
+
 
 
   // Convert temperature based on the selected unit

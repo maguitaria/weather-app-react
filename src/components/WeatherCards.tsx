@@ -8,6 +8,7 @@ import WeatherDetailsComponent from "./FlashCardDetails";
 const WeatherCardsList: React.FC = () => {
   const [dailyData, setDailyData] = useState(null);
   const [selectedFlashcard, setSelectedFlashcard] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,38 +23,50 @@ const WeatherCardsList: React.FC = () => {
     fetchData();
   }, []);
 
-  const handleFlashcardClick = (index) => {
-    // Update the selected flashcard index
-    setSelectedFlashcard(index);
-  };
 
+const handleCardClick = (index) => {
+  setSelectedFlashcard(index);
+  setIsVisible(true);
+
+};
+
+const handleCloseClick = () => {
+  setIsVisible(false);
+};
   return (
-    <div className="flex grid grid-cols-4 gap-4 hover:bg-color-100 ml-5">
-      {dailyData &&
-        dailyData?.map((dayData, index) => (
-          <div
-            key={index}
-            onClick={() => handleFlashcardClick(index)}
-            className={` ${
-              selectedFlashcard === index
-                ? "border-4 border-blue rounded-md"
-                : ""
-            }`}
-          >
-            <WeatherFlashCard
-              day={dayData.date}
-              description={dayData.description}
-              maxTemperature={dayData.maxTemperature}
-              minTemperature={dayData.minTemperature}
-              icon={dayData.icon}
-            />
-          </div>
-        ))}
+    <div>
       {/* Conditionally render WeatherDetailsComponent */}
-      {selectedFlashcard !== null && (
-        <WeatherDetailsComponent data={dailyData[selectedFlashcard]} />
+      {isVisible && selectedFlashcard !== null && (
+        <WeatherDetailsComponent
+          data={dailyData[selectedFlashcard]}
+          onClose={handleCloseClick}
+        />
       )}
-    </div>
+    <div className="p-4" />
+        <div className="  flex grid grid-cols-4 gap-4 hover:bg-color-100 ml-5">
+          {dailyData &&
+            dailyData?.map((dayData, index) => (
+              <div
+                key={index}
+                onClick={() => handleCardClick(index)}
+                className={` ${
+                  selectedFlashcard === index
+                    ? "border-4 border-blue rounded-md"
+                    : ""
+                }`}
+              >
+                <WeatherFlashCard
+                  day={dayData.date}
+                  description={dayData.description}
+                  maxTemperature={dayData.maxTemperature}
+                  minTemperature={dayData.minTemperature}
+                  icon={dayData.icon}
+                />
+              </div>
+            ))}
+        </div>
+      </div>
+   
   );
 };
 export  default WeatherCardsList
