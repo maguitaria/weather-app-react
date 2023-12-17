@@ -1,32 +1,60 @@
-import React from "react"
-import { useWeatherContext } from "../contexts/TemperatureUnit"
+import React from "react";
+import { useWeatherContext } from "../contexts/TemperatureUnit";
 
 interface WeatherFlashCardProps {
-  day: string
-  temperature: number
-  description: string
+  day: string;
+  maxTemperature: number;
+  minTemperature: number;
+  icon: string; 
+  description: string;
 }
- 
+
 const WeatherFlashCard: React.FC<WeatherFlashCardProps> = ({
   day,
-  temperature,
+  maxTemperature,
+  minTemperature,
+  icon,
   description,
 }) => {
-
   const { temperatureUnit } = useWeatherContext();
+const options = {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+};
 
-// Convert temperature based on the selected unit
-const convertedTemperature =
-  temperatureUnit === "Celsius" ? temperature : (temperature * 9) / 5 + 32;
+
+  // Convert temperature based on the selected unit
+  const convertedMaxTemperature =
+    temperatureUnit === "Celsius"
+      ? maxTemperature
+      : (maxTemperature * 9) / 5 + 32;
+
+  const convertedMinTemperature =
+    temperatureUnit === "Celsius"
+      ? minTemperature
+      : (minTemperature * 9) / 5 + 32;
+
   return (
-    <div className="bg-grey p-4 shadow-md rounded-md mx-2">
+    <div className="bg-light-blue p-4 shadow-md rounded-md ">
       <h2 className="text-lg font-bold mb-2">{day}</h2>
+      <img
+        alt="weather icon"
+        src={icon}
+        className="w-40 h-40 mx-auto mb-4"
+      />
       <p className="text-gray-600">{description}</p>
       <p className="text-xl font-bold mt-4">
-      {convertedTemperature.toFixed(1)}&deg;{temperatureUnit.charAt(0)}
+        Max: {convertedMaxTemperature.toFixed(1)}&deg;
+        {temperatureUnit.charAt(0)}
+      </p>
+      <p className="text-xl font-bold mt-2">
+        Min: {convertedMinTemperature.toFixed(1)}&deg;
+        {temperatureUnit.charAt(0)}
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default WeatherFlashCard
+export default WeatherFlashCard;

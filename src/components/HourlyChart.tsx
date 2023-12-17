@@ -12,7 +12,7 @@ import {
   TimeScale
 } from "chart.js";
 import axios from "axios";
-import { WeatherData, getTempAndDay } from "../axios/fetch";
+import { WeatherData, getWeeklyData } from "../axios/fetch";
 import "chartjs-adapter-date-fns";
 interface WeatherChartProps {}
 
@@ -33,7 +33,7 @@ const WeatherChart: React.FC<WeatherChartProps> = () => {
     },
     scales: {
       y: {
-        min: -10,
+        min: -20,
         max: 10,
         ticks: {
           stepSize: 2, // Adjust as needed
@@ -42,14 +42,13 @@ const WeatherChart: React.FC<WeatherChartProps> = () => {
           display: true,
           text: "Temperature (°C)",
         },
-       
       },
       x: {
         type: "time", // Use time axis
         time: {
-          unit: "day", // Set the time unit to "hour"
+          unit: "day", // Set the time unit to "day"
           displayFormats: {
-            hour: "MMM d", // Format for hourly labels
+            day: "EEE, MMM d", // Format for displaying both day and date
           },
           minUnit: "day", // Display a separator when a day ends
         },
@@ -84,7 +83,7 @@ const WeatherChart: React.FC<WeatherChartProps> = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data: WeatherData = await getTempAndDay();
+        const data: WeatherData = await getWeeklyData();
         setChartData({
           labels: data.labels,
           datasets: data.datasets
