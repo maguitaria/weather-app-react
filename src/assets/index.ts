@@ -6,7 +6,19 @@ import windsock from './images/animation-ready/windsock.svg';
 import celsius from './images/animation-ready/celsius.svg'
 import fahrenheit from './images/animation-ready/fahrenheit.svg'
 import sunset from './images/animation-ready/sunset.svg'
-// Add more imports for other icons as needed
+
+import drizzle from './images/animation-ready/drizzle.svg'
+import fog from './images/animation-ready/fog-day.svg'
+import nightFog from './images/animation-ready/fog-night.svg'
+import snow from './images/animation-ready/snow.svg'
+import partly_cloudy from './images/animation-ready/partly-cloudy-day.svg'
+import partly_cloudy_night from './images/animation-ready/partly-cloudy-night.svg'
+import rain from './images/animation-ready/rain.svg'
+import heavy_rain from './images/animation-ready/thunderstorms-day-rain.svg'
+import raindrops from './images/animation-ready/raindrops.svg'
+import wind from './images/animation-ready/wind.svg'
+import thunderstorm from './images/animation-ready/thunderstorms-day.svg';
+
 
 const icons = {
     cloudy,
@@ -15,9 +27,21 @@ const icons = {
     windsock,
     celsius,
     fahrenheit,
-    sunset
+    sunset,
+    // Weather icons
+    drizzle,
+    fog,
+    nightFog,
+    snow,
+    partly_cloudy,
+    partly_cloudy_night,
+    rain,
+    raindrops,
+    heavy_rain,
+    thunderstorm,
+    wind,
 
-    // Add more icons here
+
 };
 
 export default icons;
