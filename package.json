@@ -15,10 +15,9 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
     "apexcharts": "^3.41.0",
-    "chart.js": "^3.9.1",
     "chartjs-adapter-date-fns": "^3.0.0",
     "date-fns": "^2.30.0",
-    "faker": "^6.6.6",
+    "faker": "^5.5.3",
     "headlessui": "^0.0.0",
     "jsvectormap": "^1.5.3",
     "match-sorter": "^6.3.1",

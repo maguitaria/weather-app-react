@@ -49,9 +49,7 @@ const icons = {
     thermometer,
 uv_index,
 sunrise,
-sunset,
 precipitation,
-
 };
 
 export default icons;
