@@ -18,6 +18,12 @@ const WeatherFlashCard: React.FC<WeatherFlashCardProps> = ({
 }) => {
   const { temperatureUnit } = useWeatherContext();
 
+  const dateObjWeek = new Date(day);
+
+
+  const dayOfWeek = new Intl.DateTimeFormat("en-US", {
+    weekday: "long",
+  }).format(dateObjWeek);
 
 
   // Convert temperature based on the selected unit
@@ -33,7 +39,7 @@ const WeatherFlashCard: React.FC<WeatherFlashCardProps> = ({
 
   return (
     <div className="bg-light-blue p-4 shadow-md rounded-md ">
-      <h2 className="text-lg font-bold mb-2">{day}</h2>
+      <h2 className="text-lg  text-center font-bold mb-2">{dayOfWeek}</h2>
       <img
         alt="weather icon"
         src={icon}

@@ -1,11 +1,10 @@
-// src/images/animation-ready/index.ts
+// https://github.com/basmilius/weather-icons
 import cloudy from './images/animation-ready/cloudy.svg';
 import rainy from './images/animation-ready/rain.svg';
 import snowy from './images/animation-ready/partly-cloudy-day-snow.svg';
 import windsock from './images/animation-ready/windsock.svg';
 import celsius from './images/animation-ready/celsius.svg'
 import fahrenheit from './images/animation-ready/fahrenheit.svg'
-import sunset from './images/animation-ready/sunset.svg'
 
 import drizzle from './images/animation-ready/drizzle.svg'
 import fog from './images/animation-ready/fog-day.svg'
@@ -18,8 +17,13 @@ import heavy_rain from './images/animation-ready/thunderstorms-day-rain.svg'
 import raindrops from './images/animation-ready/raindrops.svg'
 import wind from './images/animation-ready/wind.svg'
 import thunderstorm from './images/animation-ready/thunderstorms-day.svg';
-
-
+import cross from './images/animation-ready/icons8-close-50.png'
+import barometer from './images/animation-ready/barometer.svg'
+import thermometer from './images/animation-ready/thermometer.svg'
+import uv_index from './images/animation-ready/uv-index.svg'
+import sunrise from './images/animation-ready/sunrise.svg'
+import sunset from './images/animation-ready/sunset.svg'
+import precipitation from './images/animation-ready/moon-waning-crescent.svg'
 const icons = {
     cloudy,
     rainy,
@@ -40,7 +44,13 @@ const icons = {
     heavy_rain,
     thunderstorm,
     wind,
-
+    cross,
+    barometer,
+    thermometer,
+uv_index,
+sunrise,
+sunset,
+precipitation,
 
 };
 

@@ -29,7 +29,8 @@ export interface CurrentWeather {
         temperature: any,
         date: string ,
         windSpeed: string,
-        cloudCover: string
+        cloudCover: string,
+        apparentTemperature: any
     }
 }
 
@@ -76,7 +77,7 @@ export async function getWeeklyData(): Promise<WeatherData> {
 export async function getCurrentWeather(): Promise<CurrentWeather> {
     try {
         const response = await fetch(
-            `https://api.open-meteo.com/v1/forecast?latitude=65.0124&longitude=25.4682&current=temperature_2m,weather_code,cloud_cover&hourly=temperature_2m&daily=weather_code&timezone=auto&forecast_days=1`
+            `https://api.open-meteo.com/v1/forecast?latitude=65.0124&longitude=25.4682&current=temperature_2m,weather_code,cloud_cover,wind_speed_10m,apparent_temperature&hourly=temperature_2m&daily=weather_code&timezone=auto&forecast_days=1`
         );
 
         if (!response.ok) {
@@ -98,12 +99,12 @@ export async function getCurrentWeather(): Promise<CurrentWeather> {
         const cloudCover = weatherData.current.cloud_cover;
         const temperatureUnit = 'C'; // Assuming the temperature is in Celsius
         const date = weatherData.current.time;
-        const wind = 'N/A'; 
-
+        const wind = weatherData.current.wind_speed_10m; 
+        const apparentTemperature = weatherData.current.apparent_temperature
         // Extract weather code from the weather data
         const weatherCode = weatherData.daily.weather_code;
 
-
+    
 
         // Use the weather code to get the corresponding weather information
         const weatherCodeInfo = weatherCode_JSON[weatherCode];
@@ -126,7 +127,8 @@ export async function getCurrentWeather(): Promise<CurrentWeather> {
                 temperature: `${currentTemperature}&deg;${temperatureUnit}`,
                 date: date,
                 windSpeed: `${wind} m/s`,
-                cloudCover: `${cloudCover} %`
+                cloudCover: `${cloudCover} %`,
+                apparentTemperature: `${apparentTemperature}&deg;${temperatureUnit}`
             }
         };
     } catch (error) {
@@ -135,11 +137,11 @@ export async function getCurrentWeather(): Promise<CurrentWeather> {
     }
 }
 
-
+const get7days_URL = 'https://api.open-meteo.com/v1/forecast?latitude=65.01&longitude=25.4682&daily=temperature_2m_max,temperature_2m_min,apparent_temperature_max,sunrise,sunset,uv_index_max'
 export async function get7DaysForecast() {
 
     const response = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=65.0124&longitude=25.4682&current=temperature_2m,weather_code,cloud_cover&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`
+        `https://api.open-meteo.com/v1/forecast?latitude=65.0124&longitude=25.4682&current=temperature_2m,weather_code,cloud_cover&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,sunrise,sunset,uv_index_max,daylight_duration,wind_speed_10m_max,precipitation_sum&timezone=auto`
     );
 
     if (!response.ok) {
@@ -161,6 +163,15 @@ export async function get7DaysForecast() {
             weatherCode: weatherData.daily.weather_code[index],
             description: weatherCode_JSON[weatherData.daily.weather_code[index]]?.day?.description || "", // Adjust based on the actual structure of your API response
             icon: weatherCode_JSON[weatherData.daily.weather_code[index]]?.day?.image || "", // Adjust based on the actual structure of your API response
+            
+            // Additional info
+            feelsLike: weatherData.daily.apparent_temperature_max[index],
+            sunrise: weatherData.daily.sunrise[index],
+            sunset: weatherData.daily.sunset[index],
+            uv_index : weatherData.daily.uv_index_max[index],
+            daylightDuration : weatherData.daily.daylight_duration[index],
+            windSpeed: weatherData.daily.wind_speed_10m_max[index],
+            precipitation: weatherData.daily.precipitation_sum[index],
         };
     });
 

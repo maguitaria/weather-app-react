@@ -6,7 +6,7 @@ import { useWeatherContext } from "../contexts/TemperatureUnit";
 const WeatherComponent = () => {
   const [weatherData, setWeatherData] = useState<CurrentWeather | null>(null);
   const { temperatureUnit } = useWeatherContext();
-
+  console.log(weatherData);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -36,36 +36,64 @@ const WeatherComponent = () => {
 
   // Render the weather component
   return (
-    <div className="flex h-110 bg-blue/40 rounded-md max-w-lg p-3 space-y-4 lg:w-full">
+    <div className="flex h-110 bg-blue/40 rounded-md max-w-xl p-3 space-y-4 lg:w-full">
       <div className="bg-white p-4 shadow-md rounded-md text-center w-full">
-        <h3 className="text-xl font-bold mb-2 text-center">Current Weather</h3>
+        <h3 className="text-2xl font-bold mb-4">Current Weather</h3>
+
+        {/* Weather icon */}
         <img
           alt="weather icon"
           src={weatherData.currentWeather.icon}
-          className="w-32 h-32 mx-auto mb-4"
+          className="w-20 h-20 mx-auto mb-4"
         />
-        <p className="text-gray-600">
+
+        {/* Weather description */}
+        <p className="text-xl text-gray-600 mb-4">
           {weatherData.currentWeather.description}
         </p>
+
+        {/* Temperature */}
         <div className="flex items-center justify-center mt-4">
-          <p className="text-xl font-bold mt-4">
+          <p className="text-3xl font-bold">
             {convertedTemperature.toFixed(1)}&deg;{temperatureUnit.charAt(0)}
           </p>
         </div>
-        <p className="text-gray-600">{weatherData.currentWeather.date}</p>
-        <div className="flex items-center mt-4">
-          <img
-            alt="Wind speed"
-            src={icons.windsock}
-            className="w-10 h-10 mr-2"
-          />
-          <p className="text-gray-600">
-            Wind speed: {weatherData.currentWeather.windSpeed}
-          </p>
+
+        {/* Additional details */}
+        <div className=" gap-2 mt-4">
+          {/* Wind speed */}
+          <div className="flex items-center">
+            <img
+              alt="Wind speed"
+              src={icons.windsock}
+              className="w-8 h-8 mr-2"
+            />
+            <p className="text-md text-gray-600">
+              Wind speed: {weatherData.currentWeather.windSpeed}
+            </p>
+          </div>
+
+          {/* Cloud cover */}
+          <div className="flex items-center">
+            <img alt="Cloudy" src={icons.cloudy} className="w-8 h-8 mr-2" />
+            <p className="text-md text-gray-600">
+              Cloud Cover: {weatherData.currentWeather.cloudCover}
+            </p>
+          </div>
+
+          {/* Feels like */}
+          <div className="flex items-center">
+            <img
+              alt="Thermometer"
+              src={icons.thermometer}
+              className="w-8 h-8 mr-2"
+            />
+            <p className="text-md text-gray-600">
+              Feels like:
+              {temperatureUnit.charAt(0)}
+            </p>
+          </div>
         </div>
-        <p className="text-gray-600">
-          Cloud Cover: {weatherData.currentWeather.cloudCover}
-        </p>
       </div>
     </div>
   );

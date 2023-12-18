@@ -24,3 +24,26 @@ code {
   font-size: 16px;
   line-height: 24px;
 }
+temperature-line::before {
+  content: "";
+  position: relative;
+  top: 50%;
+  left: 0;
+  width: 40%;
+  height: 2px;
+  background-color: #333; /* Adjust color as needed */
+  transform: translateY(-50%);
+}
+
+temperature-values {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px; /* Adjust as needed */
+}
+
+max-temperature,
+min-temperature {
+  font-weight: bold;
+}
+
