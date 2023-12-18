@@ -30,6 +30,16 @@ const WeatherComponent = () => {
     temperatureUnit === "Celsius"
       ? numericTemperature
       : (numericTemperature * 9) / 5 + 32;
+
+  // Extract numeric temperature value
+  const numericFeelsLike = parseFloat(
+    weatherData?.currentWeather.apparentTemperature.replace(/[^0-9.-]+/g, "")
+  );
+  // Convert temperature based on the selected unit
+  const convertedFeelsLike =
+    temperatureUnit === "Celsius"
+      ? numericFeelsLike
+      : (numericFeelsLike * 9) / 5 + 32;
   if (!weatherData) {
     return <p>Loading...</p>;
   }
@@ -55,7 +65,7 @@ const WeatherComponent = () => {
         {/* Temperature */}
         <div className="flex items-center justify-center mt-4">
           <p className="text-3xl font-bold">
-            {convertedTemperature.toFixed(1)}&deg;{temperatureUnit.charAt(0)}
+            {convertedTemperature.toFixed(0)}&deg;{temperatureUnit.charAt(0)}
           </p>
         </div>
 
@@ -89,7 +99,8 @@ const WeatherComponent = () => {
               className="w-8 h-8 mr-2"
             />
             <p className="text-md text-gray-600">
-              Feels like:
+              Feels like: 
+              {convertedFeelsLike.toFixed(0)}&deg;
               {temperatureUnit.charAt(0)}
             </p>
           </div>

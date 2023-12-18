@@ -59,7 +59,7 @@ const formatted_sunset = sunsetDate.toLocaleTimeString("en-Uk", {
           : (feelsLike * 9) / 5 + 32; 
   return (
     <div className="flex flex-shrink bg-yellow/30 rounded-md p-4 space-y-4">
-      <div className="flex flex-col max-w-md lg:w-full bg-white/30 p-6 rounded-md shadow-lg">
+      <div className="flex flex-col max-w-md lg:w-full bg-white p-6 rounded-md shadow-lg">
         <h2 className="text-2xl text- text-center font-bold mb-4">
           {dayOfWeek}
         </h2>

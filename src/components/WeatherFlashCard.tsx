@@ -39,21 +39,22 @@ const WeatherFlashCard: React.FC<WeatherFlashCardProps> = ({
 
   return (
     <div className="bg-light-blue p-4 shadow-md rounded-md ">
-      <h2 className="text-lg  text-center font-bold mb-2">{dayOfWeek}</h2>
-      <img
-        alt="weather icon"
-        src={icon}
-        className="w-40 h-40 mx-auto mb-4"
-      />
-      <p className="text-gray-600">{description}</p>
-      <p className="text-xl font-bold mt-4">
-        Max: {convertedMaxTemperature.toFixed(1)}&deg;
-        {temperatureUnit.charAt(0)}
-      </p>
-      <p className="text-xl font-bold mt-2">
-        Min: {convertedMinTemperature.toFixed(1)}&deg;
-        {temperatureUnit.charAt(0)}
-      </p>
+      <h2 className="lg:text-lg sm:text-xs md:text-md text-center font-bold mb-2">
+        {dayOfWeek}
+      </h2>
+      <img alt="weather icon" src={icon} className="w-40 h-40 mx-auto mb-4" />
+      <p className="text-gray-600 text-center">{description}</p>
+      <div className="w-full h-1 bg-gray-400 my-2 bg-orange"></div>
+
+      {/* Temperature values */}
+      <div className="flex flex-col sm:flex-row justify-between text-xs mt-2">
+        <p className="font-bold">
+          {minTemperature.toFixed(0)}&deg;{temperatureUnit.charAt(0)}
+        </p>
+        <p className="font-bold">
+          {maxTemperature.toFixed(0)}&deg;{temperatureUnit.charAt(0)}
+        </p>
+      </div>
     </div>
   );
 };
