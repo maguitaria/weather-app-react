@@ -59,7 +59,7 @@ const formatted_sunset = sunsetDate.toLocaleTimeString("en-Uk", {
           : (feelsLike * 9) / 5 + 32; 
   return (
     <div className="flex flex-shrink bg-yellow/30 rounded-md p-4 space-y-4">
-      <div className="flex flex-col max-w-md lg:w-full bg-white p-6 rounded-md shadow-lg">
+     <div className="lg:flex-1 lg:w-full bg-white p-6 rounded-md shadow-lg">
         <h2 className="text-2xl text- text-center font-bold mb-4">
           {dayOfWeek}
         </h2>
@@ -112,17 +112,18 @@ const formatted_sunset = sunsetDate.toLocaleTimeString("en-Uk", {
         <img
           alt="weather icon"
           src={icon}
-          className="  w-full lg:w-full   md:max-w-full sm:max-w-full h-70 mx-auto mb-4"
+          className="  w-full lg:w-full md:max-w-full sm: h-70 mx-auto mb-4"
         />
       </div>
-      <button onClick={onClose} className="hover:text-red-700 ml-20 mt-5 h-8">
+      <button onClick={onClose} className="lg:ml-20 xs:mr-3  sm:h-8 xs:h-8">
         <img
           alt="weather icon"
           src={icons.cross}
-          className="lg:w-6 lg:h-6 sm:h-10 sm:w-20"
+          className="lg:w-6 lg:h-6 sm:h-6 sm:w-6"
         />
       </button>
-    </div>
+      </div>
+ 
   );
 };
 

@@ -8,12 +8,14 @@
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d build"
   },
   "author": {
     "name": "Mariia Glushenkova",
     "email": "t2glma00@students.oamk.fi"
   },
+  "homepage": "https://{maguitaria}.github.io/{weather-react-app}/",
+
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
     "apexcharts": "^3.41.0",

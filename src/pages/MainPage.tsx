@@ -33,6 +33,7 @@ const MainPage: React.FC = () => {
               <div className="w-full h-96 justify-center">
                 <WeatherChart />
               </div>
+              <div className="p-7"></div>
             </div>
           </div>
         </div>
