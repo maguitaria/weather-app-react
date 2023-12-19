@@ -30,3 +30,7 @@ build
 *.local
 
 images
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

@@ -1,7 +1,7 @@
 // src/components/WeatherCardsList.tsx
 import React, { useEffect, useRef, useState } from "react"
 import WeatherFlashCard from "./WeatherFlashCard"
-import { sampleWeatherData } from "../axios/sampleData"
+
 import { get7DaysForecast } from "../axios/fetch";
 import WeatherDetailsComponent from "./FlashCardDetails";
 

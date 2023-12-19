@@ -8,14 +8,14 @@
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "test": "jest"
   },
   "author": {
     "name": "Mariia Glushenkova",
     "email": "t2glma00@students.oamk.fi"
   },
   "homepage": "https://{maguitaria}.github.io/{weather-react-app}/",
-
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
     "apexcharts": "^3.41.0",
@@ -39,13 +39,20 @@
     "vitest": "^1.0.4"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.23.3",
     "@faker-js/faker": "^8.3.1",
+    "@jest/globals": "^29.7.0",
+    "@playwright/test": "^1.40.1",
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.1.2",
+    "@types/node": "^20.10.5",
     "@types/react": "^18.2.17",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",
     "autoprefixer": "^10.4.14",
     "file-loader": "^6.2.0",
     "gh-pages": "^6.1.0",
+    "jest": "^29.7.0",
     "postcss": "^8.4.27",
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.4.1",
