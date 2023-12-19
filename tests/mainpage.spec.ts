@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 
 
     test('Go through elements and click on 7 days cards', async ({ page }) => {
-        await page.goto('http://localhost:5173/weather-app-react/');
+        await page.goto('https://maguitaria.github.io/weather-app-react/');
         await page.waitForLoadState()
         await page.locator('div').filter({ hasText: /^Weather in Oulu, Finland$/ }).nth(2).click();
         await page.getByText('Current WeatherSnow').click();
