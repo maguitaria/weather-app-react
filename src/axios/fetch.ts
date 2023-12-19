@@ -41,7 +41,6 @@ export async function getWeeklyData(): Promise<WeatherData> {
         );
 
         const data = response.data;
-        console.log("Data from response ", data);
         if (!data.hourly || !data.hourly.time || !data.hourly.temperature_2m) {
             console.error("Invalid data structure:", data);
 
@@ -175,7 +174,6 @@ export async function get7DaysForecast() {
         };
     });
 
-    console.log(dailyInfo);
     return dailyInfo;
 }
 

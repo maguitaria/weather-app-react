@@ -41,8 +41,7 @@ const WeatherDetailsComponent: React.FC<WeatherFlashCardProps> = ({
   const sunriseDate = new Date(sunrise);
   const sunsetDate = new Date(sunset);
   let displayText; // Today or day of week
-  let displayDate; // formatted date
-  displayDate = new Intl.DateTimeFormat("en-US", {
+  let displayDate = new Intl.DateTimeFormat("en-US", {
     weekday: "short",
     month: "short",
     day: "numeric",
@@ -81,13 +80,13 @@ const WeatherDetailsComponent: React.FC<WeatherFlashCardProps> = ({
         <div className="">
           <button
             onClick={onClose}
-            className="w-auto lg:ml-4 xs:w-8 sm:h-8 xs:h-8"
+            className="w-auto lg:ml-4 xs:w-8 sm:h-8 xs:h-8 small-cross"
           >
             <img
               alt="weather icon"
               src={icons.cross}
-              className="lg:w-6 lg:h-6 sm:w-4 sm:h-3 xs:h-3 small-cross"
-              
+              className=" h-6 w-6 small-cross"
+   
             />
           </button>
           <img
@@ -103,34 +102,35 @@ const WeatherDetailsComponent: React.FC<WeatherFlashCardProps> = ({
           {" "}
           {displayDate}
         </p>
+        <br />
         {/* Horizontal line */}
-        <div className="w-full h-1 bg-gray-400 my-2 bg-orange"></div>
+        <div className="w-full h-2 rounded-md bg-gray-400 my-2 bg-gray/40"></div>
 
         {/* Temperature values */}
         <div className="flex justify-between">
-          <p className="font-bold">
-            {minTemperature.toFixed(1)}&deg;{temperatureUnit.charAt(0)}
+          <p className="font-bold text-lg text-blue">
+            {minTemperature.toFixed(0)}&deg;{temperatureUnit.charAt(0)}
           </p>
-          <p className="font-bold">
-            {maxTemperature.toFixed(1)}&deg;{temperatureUnit.charAt(0)}
+          <p className="font-bold text-lg text-red">
+            {maxTemperature.toFixed(0)}&deg;{temperatureUnit.charAt(0)}
           </p>
         </div>
         <p className="mt-2 text-center text-xl font-bold"> {description}</p>
-        <p className="text-gray-600 text-center my-2">
+        <p className="text-gray-600 text-center text-lg xl:text-xl my-2">
           {" "}
           Feels like: {convertedFeelsLike.toFixed(1)}&deg;
           {temperatureUnit.charAt(0)}
         </p>
-        <p className="flex items-center my-2">
+        <p className="flex items-center  text-lg xl:text-xl  my-2">
           <img src={icons.wind} alt="Wind" className="w-10 h-10 mr-2" />
           Wind: {windSpeed} km/h
         </p>
-        <p className="flex items-center my-2">
+        <p className="flex items-center  text-lg xl:text-xl my-2">
           <img src={icons.uv_index} alt="UV Index" className="w-10 h-10 mr-2" />
           UV Index: {uv_index}
         </p>
 
-        <p className="flex items-center my-2">
+        <p className="flex items-center  text-lg xl:text-xl my-2">
           <img
             src={icons.precipitation}
             alt="Precipitation"
@@ -138,11 +138,11 @@ const WeatherDetailsComponent: React.FC<WeatherFlashCardProps> = ({
           />
           Precipitation: {precipitation} mm
         </p>
-        <div className="flex items-center my-2">
+        <div className="flex items-center  text-lg xl:text-xl my-2">
           <img src={icons.sunrise} alt="Sunrise" className="w-10 h-10 mr-2" />
           Sunrise: {formatted_sunrise}
         </div>
-        <div className="flex items-center my-2">
+        <div className="flex items-center  text-lg xl:text-xl my-2">
           <img src={icons.sunset} alt="Sunset" className="w-10 h-10 mr-2" />
           Sunset: {formatted_sunset}
         </div>

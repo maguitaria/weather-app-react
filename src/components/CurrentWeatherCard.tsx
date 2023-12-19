@@ -6,13 +6,11 @@ import { useWeatherContext } from "../contexts/TemperatureUnit";
 const WeatherComponent = () => {
   const [weatherData, setWeatherData] = useState<CurrentWeather | null>(null);
   const { temperatureUnit } = useWeatherContext();
-  console.log(weatherData);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getCurrentWeather();
         setWeatherData(data);
-        console.log("Current weather", data);
       } catch (error) {
         console.error("Error fetching weather data:", error);
       }
