@@ -3,6 +3,8 @@
 The Weather App provides you with the latest weather information for Oulu, including a 7-day forecast, current conditions, and an hourly chart to visualize the week's weather changes.
 
  It uses the Open Meteo API for data, Chart.js for charts, and is built with Vite, React, TypeScript, Axios, and date-fns.
+ 
+<img width="1435" alt="Screenshot 2023-12-19 at 15 07 04" src="https://github.com/maguitaria/weather-app-react/assets/112544437/349e15ba-f694-4fab-8e96-ce7428fdea12">
 
 ## 🌐 Deployment
 
