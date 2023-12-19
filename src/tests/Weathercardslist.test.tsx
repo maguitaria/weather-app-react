@@ -1,4 +1,4 @@
-// src/components/__tests__/WeatherCardsList.test.tsx
+//FIXME - not working
 import React from "react";
 import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import WeatherCardsList from "../components/WeatherCards";
@@ -35,7 +35,7 @@ describe("WeatherCardsList", () => {
     render(<WeatherCardsList />);
     await waitFor(() => expect(get7DaysForecast).toHaveBeenCalledTimes(1));
     expect(screen.getByText("Sunny")).toBeInTheDocument(); // Change to match actual text/content
-    // Add more assertions as needed
+
   });
 
   it("shows WeatherDetailsComponent on card click", async () => {
@@ -43,9 +43,7 @@ describe("WeatherCardsList", () => {
     await waitFor(() => expect(get7DaysForecast).toHaveBeenCalled());
     const firstCard = screen.getByText("Sunny"); // Change to match actual text/content
     fireEvent.click(firstCard);
-    // Expectations for what should happen when a card is clicked
-    // Add more assertions based on your implementation
   });
 
-  // Add more tests as needed
+
 });

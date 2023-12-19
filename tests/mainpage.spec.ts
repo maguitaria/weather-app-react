@@ -34,3 +34,18 @@ import { test, expect } from '@playwright/test';
             }
         });
     });
+
+test('Change from Fahrenheit to Celsius', async ({ page }) => {
+    // Check that all 7 cards change to Fahrenheit
+    await page.goto('https://maguitaria.github.io/weather-app-react/');
+    await page.getByRole('button', { name: 'Icon' }).click();
+    await page.getByText('°F').nth(1).click();
+    await page.getByText('°F').nth(2).click();
+    await page.getByText('°F').nth(3).click();
+    await page.getByText('°F').nth(4).click();
+    await page.getByText('°F').nth(5).click();
+    await page.getByText('°F').nth(6).click();
+    await page.getByText('°F').nth(7).click();
+    await page.getByText('Today').click();
+
+});
