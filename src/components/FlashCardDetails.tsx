@@ -38,31 +38,71 @@ const WeatherDetailsComponent: React.FC<WeatherFlashCardProps> = ({
     sunset,
   } = data;
   const dateObjWeek = new Date(date);
-  const sunriseDate = new Date(sunrise)
-  const sunsetDate = new Date(sunset)
-
-  const dayOfWeek = new Intl.DateTimeFormat("en-US", {
-    weekday: "long",
+  const sunriseDate = new Date(sunrise);
+  const sunsetDate = new Date(sunset);
+  let displayText; // Today or day of week
+  let displayDate; // formatted date
+  displayDate = new Intl.DateTimeFormat("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
   }).format(dateObjWeek);
 
-const formatted_sunrise = sunriseDate.toLocaleTimeString("en-Uk", {
-  hour: "numeric",
-  minute: "numeric",
-});
-const formatted_sunset = sunsetDate.toLocaleTimeString("en-Uk", {
-  hour: "numeric",
-  minute: "numeric",
-});
-      const convertedFeelsLike =
-        temperatureUnit === "Celsius"
-          ? feelsLike
-          : (feelsLike * 9) / 5 + 32; 
+  // Display today or then day of week
+  const today = new Date();
+
+  if (
+    dateObjWeek.getFullYear() === today.getFullYear() &&
+    dateObjWeek.getMonth() === today.getMonth() &&
+    dateObjWeek.getDate() === today.getDate()
+  ) {
+    // If they are equal, set displayText to "today"
+    displayText = "Today";
+  } else {
+    // If they are not equal, format dateObjWeek as the weekday name
+    displayText = new Intl.DateTimeFormat("en-US", {
+      weekday: "long",
+    }).format(dateObjWeek);
+  }
+
+  const formatted_sunrise = sunriseDate.toLocaleTimeString("en-Uk", {
+    hour: "numeric",
+    minute: "numeric",
+  });
+  const formatted_sunset = sunsetDate.toLocaleTimeString("en-Uk", {
+    hour: "numeric",
+    minute: "numeric",
+  });
+  const convertedFeelsLike =
+    temperatureUnit === "Celsius" ? feelsLike : (feelsLike * 9) / 5 + 32;
   return (
-    <div className="flex flex-shrink bg-yellow/30 rounded-md p-4 space-y-4">
-     <div className="lg:flex-1 lg:w-full bg-white p-6 rounded-md shadow-lg">
+    <div className="flex flex-1 lg:w-full sm:w-full bg-yellow/30 rounded-md p-2 ">
+      <div className="bg-white p-4 shadow-md rounded-md  w-full">
+        <div className="">
+          <button
+            onClick={onClose}
+            className="w-auto lg:ml-4 xs:w-8 sm:h-8 xs:h-8"
+          >
+            <img
+              alt="weather icon"
+              src={icons.cross}
+              className="lg:w-6 lg:h-6 sm:w-4 sm:h-3 xs:h-3 small-cross"
+              
+            />
+          </button>
+          <img
+            alt="weather icon"
+            src={icon}
+            className="w-auto lg:w-full md:max-w-full sm:h-48 mx-auto mb-4"
+          />
+        </div>
         <h2 className="text-2xl text- text-center font-bold mb-4">
-          {dayOfWeek}
+          {displayText}
         </h2>
+        <p className="lg:text-lg sm:text-xs md:text-md text-center font-bold mb-2">
+          {" "}
+          {displayDate}
+        </p>
         {/* Horizontal line */}
         <div className="w-full h-1 bg-gray-400 my-2 bg-orange"></div>
 
@@ -89,6 +129,7 @@ const formatted_sunset = sunsetDate.toLocaleTimeString("en-Uk", {
           <img src={icons.uv_index} alt="UV Index" className="w-10 h-10 mr-2" />
           UV Index: {uv_index}
         </p>
+
         <p className="flex items-center my-2">
           <img
             src={icons.precipitation}
@@ -106,24 +147,7 @@ const formatted_sunset = sunsetDate.toLocaleTimeString("en-Uk", {
           Sunset: {formatted_sunset}
         </div>
       </div>
-
-      <div className="max-w-lg"></div>
-      <div className="flex justify-items-end lg: ml-36">
-        <img
-          alt="weather icon"
-          src={icon}
-          className="  w-full lg:w-full md:max-w-full sm: h-70 mx-auto mb-4"
-        />
-      </div>
-      <button onClick={onClose} className="lg:ml-20 xs:mr-3  sm:h-8 xs:h-8">
-        <img
-          alt="weather icon"
-          src={icons.cross}
-          className="lg:w-6 lg:h-6 sm:h-6 sm:w-6"
-        />
-      </button>
-      </div>
- 
+    </div>
   );
 };
 

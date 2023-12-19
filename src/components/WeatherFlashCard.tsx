@@ -17,30 +17,30 @@ const WeatherFlashCard: React.FC<WeatherFlashCardProps> = ({
   description,
 }) => {
   const { temperatureUnit } = useWeatherContext();
-
+// Display today or then day of week
+const today = new Date();
   const dateObjWeek = new Date(day);
+let displayText;
 
-
-  const dayOfWeek = new Intl.DateTimeFormat("en-US", {
+if (
+  dateObjWeek.getFullYear() === today.getFullYear() &&
+  dateObjWeek.getMonth() === today.getMonth() &&
+  dateObjWeek.getDate() === today.getDate()
+) {
+  // If they are equal, set displayText to "today"
+  displayText = "Today";
+} else {
+  // If they are not equal, format dateObjWeek as the weekday name
+  displayText = new Intl.DateTimeFormat("en-US", {
     weekday: "long",
   }).format(dateObjWeek);
+}
 
-
-  // Convert temperature based on the selected unit
-  const convertedMaxTemperature =
-    temperatureUnit === "Celsius"
-      ? maxTemperature
-      : (maxTemperature * 9) / 5 + 32;
-
-  const convertedMinTemperature =
-    temperatureUnit === "Celsius"
-      ? minTemperature
-      : (minTemperature * 9) / 5 + 32;
 
   return (
     <div className="bg-light-blue p-4 shadow-md rounded-md ">
       <h2 className="lg:text-lg sm:text-xs md:text-md text-center font-bold mb-2">
-        {dayOfWeek}
+        {displayText}
       </h2>
       <img alt="weather icon" src={icon} className="w-40 h-40 mx-auto mb-4" />
       <p className="text-gray-600 text-center">{description}</p>

@@ -41,7 +41,10 @@ temperature-values {
   justify-content: space-between;
   margin-top: 10px; /* Adjust as needed */
 }
-
+small-cross {
+  height: 20px;
+  width: 20px;
+}
 max-temperature,
 min-temperature {
   font-weight: bold;

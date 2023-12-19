@@ -46,8 +46,8 @@ const WeatherComponent = () => {
 
   // Render the weather component
   return (
-    <div className="flex h-110 bg-blue/40 rounded-md max-w-xl p-3 space-y-4 lg:w-full">
-      <div className="bg-white p-4 shadow-md rounded-md text-center w-full">
+    <div className="flex h-110 bg-blue/40 rounded-md  md:w-full p-3 space-y-4 lg:w-full">
+      <div className="bg-white p-4 shadow-md rounded-md text-center md:w-full w-full">
         <h3 className="text-2xl font-bold mb-4">Current Weather</h3>
 
         {/* Weather icon */}

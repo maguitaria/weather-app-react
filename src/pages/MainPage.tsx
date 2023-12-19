@@ -23,7 +23,7 @@ const MainPage: React.FC = () => {
           <div className="w-0 lg:w-4" />
           <div className="flex-1  bg-white/80 flex-row  rounded-md ">
             {/* WeatherCards */}
-            <div className="flex-auto flex-row p-7 rounded mt-4 lg:mt-5 ">
+            <div className="flex-auto flex-row p-5 rounded  ">
               <WeatherCards />
 
               {/* Gap between WeatherCards and WeatherChart */}

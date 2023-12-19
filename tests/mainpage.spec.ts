@@ -9,7 +9,7 @@ test('test', async ({ page }) => {
     await expect (page.getByRole('heading', { name: 'Monday' })).toBeVisible();
 
     await page.locator('.flex-auto > div > div').first().click();
-    await page.getByText('Wind:').click();
+    await page.getByText('Wind speed:').click();
     await page.getByText('UV Index:').click();
     await page.getByText('Precipitation:').click();
     await page.getByText('Sunrise:').click();
