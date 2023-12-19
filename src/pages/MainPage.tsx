@@ -6,9 +6,9 @@ import WeatherChart from "../components/HourlyChart";
 
 const MainPage: React.FC = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-light/60 overflow-hidden">
+    <div className="flex flex-col min-h-screen bg-gray-light/60 overflow-hidden p-3">
       {/* Site header */}
-      <div className="header">
+      <div className="header  px-3">
         <Header title={"Weather in Oulu, Finland"} />
       </div>
       {/* Page content */}

@@ -17,12 +17,12 @@ const Header: React.FC<HeaderProps> = ({title}) => {
   return (
     <div className="bg-white/80 rounded-md p-1">
       <div className="container mx-auto flex justify-between items-center">
-        <div>
+        <div className="">
           <h2 className="text-lg font-bold mb-2">{title}</h2>
         </div>
         <div>
           <button
-            className="bg-blue hover:bg-blue-700 text-white font-bold rounded-full flex items-center space-x-2 p-2"
+            className="bg-blue hover:bg-blue-700 text-white font-bold rounded-full flex items-center space-x-2 p-1"
             onClick={toggleTemperatureUnit}
           >
             {temperatureUnit === "Celsius" ? (
