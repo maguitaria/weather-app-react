@@ -42,6 +42,7 @@ The Weather App is deployed at [https://maguitaria.github.io/weather-app-react/]
 
 - **Responsive Design:** Enjoy a seamless user experience on all devices, from desktop to mobile.
 
+
 ## 🛠️ Technologies Used
 
 - **Vite** for a fast and modern development experience.
@@ -50,6 +51,43 @@ The Weather App is deployed at [https://maguitaria.github.io/weather-app-react/]
 - **date-fns** for date and time formatting.
 - **TypeScript** for enhanced code quality.
 - **Axios** for making API requests.
+
+### 📝 Testing
+E2E Tests with Playwright.
+As project has only one main page, I decided to go with full e2e testing.
+
+The Weather App has integration tests using Playwright. To run the tests, follow these steps:
+
+####    Make sure your development server is running:
+```
+   bash
+
+npm start
+```
+To fire the UI testing and additional features:
+```
+//Run with UI demontstration
+npx playwright test --ui 
+// After test show the report
+npx playwright show-report
+// To generate tests
+npx playwright codegen
+
+```
+Open a new terminal window and run the integration tests:
+```    npm test```
+ 
+I reccomend using deployed version to ensure that testing runs smoothly.
+
+
+Playwright will launch a browser and perform automated tests to ensure the app functions correctly.
+
+### Recommendation for testing
+**Playwright tests are in GitHub actions, with deployment URL.**
+
+  It's recommended to use the deployed version of the Weather App to ensure that testing runs smoothly.
+
+Please follow these steps to ensure your Weather App is thoroughly tested for integration.
 
 ## 🚀 Future Enhancements
 
