@@ -65,9 +65,18 @@ const WeatherComponent = () => {
   return (
     <div className="flex h-110 bg-blue/40 rounded-md  md:w-full p-3 space-y-4 lg:w-full">
       <div className="bg-white p-4 shadow-md rounded-md text-center md:w-full w-full">
-        <h3>{location.town ? location.town : "My location"}</h3>
+        <div className=" items-center">
+          {/* Wind speed */}
+        
+            
+            <p className=" font-bold text-md text-gray-600 mb-4">
+              {location.town ? location.town : location.county}
+            </p>
+        
 
-        <h3>{location.town ? "" : location.county }</h3>
+        </div>
+        {/* Additional details */}
+
         <p></p>
         {/* Weather icon */}
         <img

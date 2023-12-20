@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = () => {
     <div className="bg-white/80 rounded-md p-1">
       <div className="container mx-auto flex justify-between items-center">
         <div className="">
-          <h3>{location.town ? location.country : "Weather in " + location.country}</h3>
+          <h3 className="font-bold text-lg">{location.town ? "Weather in " + location.country : "Weather in " + location.country}</h3>
         </div>
         <div>
           <button

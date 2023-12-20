@@ -5,7 +5,7 @@ import snowy from './images/animation-ready/partly-cloudy-day-snow.svg';
 import windsock from './images/animation-ready/windsock.svg';
 import celsius from './images/animation-ready/celsius.svg'
 import fahrenheit from './images/animation-ready/fahrenheit.svg'
-
+import location from './images/animation-ready/location-2955.svg'
 import drizzle from './images/animation-ready/drizzle.svg'
 import fog from './images/animation-ready/fog-day.svg'
 import nightFog from './images/animation-ready/fog-night.svg'
@@ -47,6 +47,7 @@ const icons = {
     cross,
     barometer,
     thermometer,
+    location,
 uv_index,
 sunrise,
 precipitation,
