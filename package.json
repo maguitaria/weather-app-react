@@ -15,7 +15,7 @@
     "name": "Mariia Glushenkova",
     "email": "t2glma00@students.oamk.fi"
   },
-  "homepage": "https://{maguitaria}.github.io/{weather-react-app}/",
+  "homepage": "https://{maguitaria}.github.io/{upd-weather-app}/",
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
     "apexcharts": "^3.41.0",
