@@ -1,14 +1,15 @@
 // src/components/Header.tsx
-import React from "react";
+import React, { useContext } from "react";
 import { useWeatherContext } from "../contexts/TemperatureUnit";
 import Icon from "./WeatherIcon";
 import icons from "../assets";
+import { LocationContext } from "../contexts/LocationContext";
 interface HeaderProps {
   title: string;
 }
-const Header: React.FC<HeaderProps> = ({title}) => {
+const Header: React.FC<HeaderProps> = () => {
   const { temperatureUnit, setTemperatureUnit } = useWeatherContext();
-
+   const { location, getLocation } = useContext(LocationContext);
   const toggleTemperatureUnit = () => {
     const newUnit = temperatureUnit === "Celsius" ? "Fahrenheit" : "Celsius";
     setTemperatureUnit(newUnit);
@@ -18,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({title}) => {
     <div className="bg-white/80 rounded-md p-1">
       <div className="container mx-auto flex justify-between items-center">
         <div className="">
-          <h2 className="text-lg font-bold mb-2">{title}</h2>
+          <h3>{location.town ? location.country : "Weather in " + location.country}</h3>
         </div>
         <div>
           <button

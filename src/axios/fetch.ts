@@ -34,10 +34,10 @@ export interface CurrentWeather {
     }
 }
 
-export async function getWeeklyData(): Promise<WeatherData> {
+export async function getWeeklyData(latitude, longitude): Promise<WeatherData> {
     try {
         const response = await axios.get(
-            "https://api.open-meteo.com/v1/forecast?latitude=65.01&longitude=25.47&hourly=temperature_2m"
+            `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m`
         );
 
         const data = response.data;
@@ -73,10 +73,11 @@ export async function getWeeklyData(): Promise<WeatherData> {
 }
 
 
-export async function getCurrentWeather(): Promise<CurrentWeather> {
+
+export async function getCurrentWeather(latitude, longitude): Promise<CurrentWeather> {
     try {
         const response = await fetch(
-            `https://api.open-meteo.com/v1/forecast?latitude=65.0124&longitude=25.4682&current=temperature_2m,weather_code,cloud_cover,wind_speed_10m,apparent_temperature&hourly=temperature_2m&daily=weather_code&timezone=auto&forecast_days=1`
+            `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code,cloud_cover,wind_speed_10m,apparent_temperature&hourly=temperature_2m&daily=weather_code&timezone=auto&forecast_days=1`
         );
 
         if (!response.ok) {
@@ -107,7 +108,7 @@ export async function getCurrentWeather(): Promise<CurrentWeather> {
 
         // Use the weather code to get the corresponding weather information
         const weatherCodeInfo = weatherCode_JSON[weatherCode];
-
+console.log(response)
         return {
             labels: timeLabels,
             datasets: [
@@ -136,11 +137,10 @@ export async function getCurrentWeather(): Promise<CurrentWeather> {
     }
 }
 
-const get7days_URL = 'https://api.open-meteo.com/v1/forecast?latitude=65.01&longitude=25.4682&daily=temperature_2m_max,temperature_2m_min,apparent_temperature_max,sunrise,sunset,uv_index_max'
-export async function get7DaysForecast() {
+export async function get7DaysForecast(latitude, longitude) {
 
     const response = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=65.0124&longitude=25.4682&current=temperature_2m,weather_code,cloud_cover&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,sunrise,sunset,uv_index_max,daylight_duration,wind_speed_10m_max,precipitation_sum&timezone=auto`
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code,cloud_cover&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,sunrise,sunset,uv_index_max,daylight_duration,wind_speed_10m_max,precipitation_sum&timezone=auto`
     );
 
     if (!response.ok) {

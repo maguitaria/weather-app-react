@@ -1,9 +1,12 @@
+import { LocationProvider } from "./contexts/LocationContext";
 import "./index.css"
 import MainPage from "./pages/MainPage"
 
 function App() {
   return (
-  <MainPage/> 
+    <LocationProvider>
+      <MainPage />
+    </LocationProvider>
   ); 
 }
 

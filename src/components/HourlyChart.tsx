@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -14,6 +14,7 @@ import {
 import axios from "axios";
 import { WeatherData, getWeeklyData } from "../axios/fetch";
 import "chartjs-adapter-date-fns";
+import { LocationContext } from "../contexts/LocationContext";
 interface WeatherChartProps {}
 
 const WeatherChart: React.FC<WeatherChartProps> = () => {
@@ -26,7 +27,7 @@ const WeatherChart: React.FC<WeatherChartProps> = () => {
     Legend,
     Tooltip
   );
-
+ const { location, getLocation } = useContext(LocationContext);
   const options = {
     plugins: {
       legend: true,
@@ -34,7 +35,7 @@ const WeatherChart: React.FC<WeatherChartProps> = () => {
     scales: {
       y: {
         min: -20,
-        max: 10,
+        max: 30,
         ticks: {
           stepSize: 2, // Adjust as needed
         },
@@ -79,27 +80,25 @@ const WeatherChart: React.FC<WeatherChartProps> = () => {
     number[],
     unknown
   > | null>();
+useEffect(() => {
+  getLocation(); // Get location when component mounts
+}, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data: WeatherData = await getWeeklyData();
-        setChartData({
-          labels: data.labels,
-          datasets: data.datasets
-        });
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        // Handle the error as needed
-      }
-    };
-
-    fetchData();
-  }, []);
+useEffect(() => {
+  if (location.latitude && location.longitude) {
+    getWeeklyData(location.latitude, location.longitude).then((data) => {
+     setChartData({
+       labels: data.labels,
+       datasets: data.datasets,
+     });
+    });
+  }
+}, [location.latitude, location.longitude]); 
+ 
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-2">Hourly chart</h2>
+      <h2 className="text-xl font-bold mb-2">Hourly chart of weather in {location.county}</h2>
       {chartData ? (
         <div className="mx-auto flex h-96 flex-grow rounded-md bg-blue/20 p-4">
           <Line

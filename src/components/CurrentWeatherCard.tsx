@@ -1,23 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { CurrentWeather, getCurrentWeather } from "../axios/fetch";
 import icons from "../assets";
 import { useWeatherContext } from "../contexts/TemperatureUnit";
+import { LocationContext } from "../contexts/LocationContext";
 
 const WeatherComponent = () => {
   const [weatherData, setWeatherData] = useState<CurrentWeather | null>(null);
+  console.log(weatherData)
+   const { location, getLocation } = useContext(LocationContext);
   const { temperatureUnit } = useWeatherContext();
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getCurrentWeather();
-        setWeatherData(data);
-      } catch (error) {
-        console.error("Error fetching weather data:", error);
-      }
-    };
 
-    fetchData();
+
+  useEffect(() => {
+    getLocation(); // Get location when component mounts
   }, []);
+
+  useEffect(() => {
+    if (location.latitude && location.longitude) {
+      getCurrentWeather(location.latitude, location.longitude).then((data) => {
+        setWeatherData(data); // Handle the weather data
+      });
+    }
+  }, [location.latitude, location.longitude]); 
+  // useEffect(() => {
+  //    getLocation();
+  //   const fetchData = async () => {
+  //     try {
+  //        if (location.latitude && location.longitude) {
+  //       const data = await getCurrentWeather(latitude,longitude);
+  //       setWeatherData(data);
+  //        }
+  //     } catch (error) {
+  //       console.error("Error fetching weather data:", error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
 
   // Extract numeric temperature value
   const numericTemperature = parseFloat(
@@ -46,8 +65,10 @@ const WeatherComponent = () => {
   return (
     <div className="flex h-110 bg-blue/40 rounded-md  md:w-full p-3 space-y-4 lg:w-full">
       <div className="bg-white p-4 shadow-md rounded-md text-center md:w-full w-full">
-        <h3 className="text-2xl font-bold mb-4">Current Weather</h3>
+        <h3>{location.town ? location.town : "My location"}</h3>
 
+        <h3>{location.town ? "" : location.county }</h3>
+        <p></p>
         {/* Weather icon */}
         <img
           alt="weather icon"
@@ -97,7 +118,7 @@ const WeatherComponent = () => {
               className="w-8 h-8 mr-2"
             />
             <p className="text-md text-gray-600">
-              Feels like: 
+              Feels like:
               {convertedFeelsLike.toFixed(0)}&deg;
               {temperatureUnit.charAt(0)}
             </p>

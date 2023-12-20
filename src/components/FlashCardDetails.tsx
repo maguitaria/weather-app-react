@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useWeatherContext } from "../contexts/TemperatureUnit";
 import icons from "../assets";
 import "../index.css"
+import { LocationContext } from "../contexts/LocationContext";
 interface WeatherFlashCardProps {
   maxTemperature: number;
   minTemperature: number;
@@ -17,12 +18,14 @@ const WeatherDetailsComponent: React.FC<WeatherFlashCardProps> = ({
 }) => {
   const [isVisible, setIsVisible] = useState(true);
   const { temperatureUnit } = useWeatherContext();
-
+   const { location, getLocation } = useContext(LocationContext);
   if (!data || !isVisible) {
     // If data is undefined, null, or the component is set to be hidden, don't render anything
     return null;
   }
-
+ useEffect(() => {
+   getLocation(); // Get location when component mounts
+ }, []);
   const {
     maxTemperature,
     minTemperature,

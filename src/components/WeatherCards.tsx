@@ -1,28 +1,31 @@
 // src/components/WeatherCardsList.tsx
-import React, { useEffect, useRef, useState } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import WeatherFlashCard from "./WeatherFlashCard"
 
-import { get7DaysForecast } from "../axios/fetch";
+import { get7DaysForecast, getCurrentWeather } from "../axios/fetch";
 import WeatherDetailsComponent from "./FlashCardDetails";
+import { LocationContext } from "../contexts/LocationContext";
 
 const WeatherCardsList: React.FC = () => {
   const [dailyData, setDailyData] = useState(null);
   const [selectedFlashcard, setSelectedFlashcard] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
-const targetRef = useRef(null);
-
+    const { location, getLocation } = useContext(LocationContext);
+    
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await get7DaysForecast();
-        setDailyData(data);
-      } catch (error) {
-        console.error("Error fetching weather data:", error);
-      }
-    };
-
-    fetchData();
+    getLocation(); // Get location when component mounts
   }, []);
+
+  
+  useEffect(() => {
+    if (location.latitude && location.longitude) {
+      get7DaysForecast(location.latitude, location.longitude).then((data) => {
+        setDailyData(data); // Handle the weather data
+      });
+    }
+  }, [location.latitude, location.longitude]); 
+
+const targetRef = useRef(null);
 
 
 const handleCardClick = (index) => {
